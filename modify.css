@@ -1,0 +1,62 @@
+body{
+    background-color: #545454;
+}
+
+.modify{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center; /* 수평 가운데 정렬 */
+    background-color: #333333;
+    opacity: 1;
+    width: 1000px;
+    height: 500px;
+    padding-top: 150px;
+    margin-top: 30px;
+    border-radius: 15px;
+}
+
+.btn{
+    margin-left: -9px;
+    width: 255px;
+    height: 30px;
+    background-color: #3660FA;
+    color: white;
+    text-align: center;
+    border: 0;
+    font-size: 12px;
+}
+
+.id{
+    width: 250px;
+    height: 25px;
+    margin-left: -6px;
+}
+
+.pw{
+    width: 250px;
+    height: 25px;
+    margin-left: -6px;
+}
+
+.emailForm{
+    margin: 10px;
+}
+
+.oldpassForm{
+    margin: 10px;
+}
+
+.passForm{
+    margin: 10px;
+}
+
+.confirmpassForm{
+    margin: 10px;
+}
+
+h4{
+    margin-bottom: 50px;
+}

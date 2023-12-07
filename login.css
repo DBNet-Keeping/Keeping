@@ -1,0 +1,71 @@
+body{
+    margin-top: 20%;
+    background-color: #545454;
+}
+
+img{
+    float: left;
+    margin-left: 200px;
+    
+}
+
+.login_page{
+    margin-left: 70%;
+    width: 250px;
+    text-align: center;
+    padding: 0px;
+}
+
+.login{
+    color: white;
+}
+
+.idForm{
+    margin: 10px;
+}
+
+.passForm{
+    margin: 10px;
+}
+
+.id{
+    width: 250px;
+    height: 25px;
+    margin-left: -6px;
+}
+
+.pw{
+    width: 250px;
+    height: 25px;
+    margin-left: -6px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.btn{
+    margin-left: 5px;
+    width: 255px;
+    height: 24px;
+    background-color: #3660FA;
+    color: white;
+    text-align: center;
+    border: 0;
+    font-size: 12px;
+}
+
+.bottonText{
+    padding-top: 4px;
+    margin: 5px;
+    margin-left: 65px;
+    margin-left: 5px;
+    width: 255px;
+    height: 20px;
+    background-color: #3660FA;
+    color: rgb(255, 255, 255);
+    border: 0;
+    font-size: 12px;
+}
+
