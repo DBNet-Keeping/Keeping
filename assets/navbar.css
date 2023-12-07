@@ -1,0 +1,87 @@
+.bar-ul {
+  list-style-type: none;
+  margin: 0px;
+}
+
+.side,
+#logout {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+#logo {
+  width: 98px;
+  height: 55px;
+}
+
+#topbar {
+  width: 1900px;
+  height: 69px;
+  background-color: #343434;
+  margin-top: -6px;
+  margin-left: -8px;
+}
+
+#logo {
+  margin-top: 7px;
+  float: left;
+}
+
+#logout {
+  float: none;
+  padding-left: 1681px;
+  padding-top: 0px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+}
+
+#logout-li {
+  padding-top: 20px;
+}
+
+.sidebar {
+  background-color: #343434;
+  width: 209px;
+  height: 2447px;
+  margin-left: -8px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+}
+
+.home_li {
+  padding-top: 30px;
+}
+
+.active {
+  background-color: rgb(54, 96, 250, 0.6);
+}
+
+.side {
+  width: 89px;
+  padding-top: 17px;
+  padding-bottom: 17px;
+  padding-left: 30px;
+  margin-left: -40px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+#home {
+  padding-right: 131px;
+}
+
+#transaction {
+  padding-right: 77px;
+}
+
+#category {
+  padding-right: 101px;
+}
+
+#subscription {
+  padding-right: 74px;
+}
+
+#mypage {
+  padding-right: 113px;
+}
