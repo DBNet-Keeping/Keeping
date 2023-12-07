@@ -19,7 +19,7 @@
       <li class="home_li"><a class="side" href="#" id="transaction">TRANSACTION</a></li>
       <li class="home_li"><a class="side" href="#" id="category">CATEGORY</a></li>
       <li class="home_li"><a class="side" href="#" id="subscription">SUBSCRIPTION</a></li>
-      <li class="home_li"><a class="side" href="#" id="mypage">MY PAGE</a></li>
+      <li class="home_li"><a class="side" href="mypage.php" id="mypage">MY PAGE</a></li>
     </ul>
   </div>
 </html>
