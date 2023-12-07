@@ -1,0 +1,47 @@
+body{
+    background-color: #545454;
+}
+
+.content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center; /* 수평 가운데 정렬 */
+    background-color: #333333;
+    opacity: 1;
+    width: 1000px;
+    height: 500px;
+    padding-top: 150px;
+    margin-top: 30px;
+    border-radius: 15px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.modify{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    background-color: #3660FA;
+    color: rgb(255, 255, 255);
+    border: 0;
+    font-size: 12px;
+}
+
+.delete{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: #3660FA;
+    color: rgb(255, 255, 255);
+    border: 0;
+    font-size: 12px;
+}
