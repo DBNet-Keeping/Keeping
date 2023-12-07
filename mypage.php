@@ -32,13 +32,23 @@
     ?>
     <div class="content">
         <h1>My Page</h1>
-        <p>HI! <?php echo $loggedInUserId; ?></p>
-        <p><?php echo $loggedInEmail; ?></p>
+        <br>
+        <br>
+        <img src="user_img.png" alt="회원 사진" class="user_img">
+        <h3>HI! <?php echo $loggedInUserId; ?></h3>
+        <h3><?php echo $loggedInEmail; ?></h3>
         <br>
         <a href="modify.php" class="modify">Modify Member Information</a>
         <br>
         <br>
         <a href="delete.php" class="delete">Delete Member Information</a>
+        <div class="budget">
+            <br>
+            <br>
+            <h1>BUDGET</h1>
+            <h3><a href="account.php">Deposit and withdrawal account</a></h3>
+            <h3><a href="non-account.php">Non-Deposit and withdrawal account</a></h3>
+        </div>
     </div>
 
 </body>
