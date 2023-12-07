@@ -19,24 +19,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $balance = $_POST['balance'];
         $deposit_and_withdrawal_status = $_POST['deposit_and_withdrawal_status'];
 
-        if (empty($account_num) || empty($bank_name) || empty($balance) || empty($deposit_and_withdrawal_status)) {
-            echo "<script>alert('모든 정보를 입력하세요')</script>";
-        }else{
-            // 중복된 account_num 체크
-            $checkDuplicateQuery = "SELECT * FROM account WHERE account_number = '$account_num' AND a_user_id = '$user_id'";
-            $duplicateResult = $conn->query($checkDuplicateQuery);
+        // 중복된 account_num 체크
+        $checkDuplicateQuery = "SELECT * FROM account WHERE account_number = '$account_num' AND a_user_id = '$user_id'";
+        $duplicateResult = $conn->query($checkDuplicateQuery);
 
-            if ($duplicateResult->num_rows > 0) {
-                echo "<script>alert('이미 존재하는 계좌 번호입니다.')</script>";
+        if ($duplicateResult->num_rows > 0) {
+            echo "<script>alert('이미 존재하는 계좌 번호입니다.')</script>";
+        } else {
+            // 사용자의 계좌 정보를 추가하는 쿼리
+            $insertAccountQuery = "INSERT INTO account (account_number, bank_name, balance, deposit_and_withdrawal_status, a_user_id) VALUES ('$account_num', '$bank_name', $balance, '$deposit_and_withdrawal_status', '$user_id')";
+
+            if ($conn->query($insertAccountQuery) === TRUE) {
+                echo "<script>alert('계좌 추가에 성공했습니다')</script>";
             } else {
-                // 사용자의 계좌 정보를 추가하는 쿼리
-                $insertAccountQuery = "INSERT INTO account (account_number, bank_name, balance, deposit_and_withdrawal_status, a_user_id) VALUES ('$account_num', '$bank_name', $balance, '$deposit_and_withdrawal_status', '$user_id')";
-
-                if ($conn->query($insertAccountQuery) === TRUE) {
-                    echo "<script>alert('계좌 추가에 성공했습니다')</script>";
-                } else {
-                    echo "<script>alert('계좌 추가 실패 : ')</script>" . $conn->error;
-                }
+                 echo "<script>alert('계좌 추가 실패 : ')</script>" . $conn->error;
             }
         }
     }
@@ -64,6 +60,8 @@ $result = $conn->query($getAccountQuery);
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="updateBalance.js"></script>
     <link rel=stylesheet href='account.css' type='text/css'>
     <link rel=stylesheet href='assets\navbar.css' type='text/css'>
     <meta charset="UTF-8">
@@ -87,6 +85,7 @@ $result = $conn->query($getAccountQuery);
     <h2>Account List</h2>
     <?php
         $result = $conn->query($getAccountQuery);
+        $totalBalance = 0; // 총액을 저장할 변수 초기화
 
         if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -97,6 +96,10 @@ $result = $conn->query($getAccountQuery);
             echo "Balance : " . $row['balance'] . " ₩<br>";
             echo "deposit_and_withdrawal_status " . ($row['deposit_and_withdrawal_status'] == 1 ? "O" : "X") . "<br>";
             echo "<br>";
+
+            // 계좌 금액을 총액에 더함
+            $totalBalance += $row['balance'];
+
             // 삭제 폼 추가
             echo "<form method='post' action='' class='delete-form'>";
             echo "<input type='hidden' name='deleteAccountNum' value='" . $row['account_number'] . "'>";
@@ -109,6 +112,9 @@ $result = $conn->query($getAccountQuery);
     } else {
         echo "NULL.";
     }
+
+    // 총액 표시
+    echo "<p>Total Balance: " . $totalBalance . " ₩</p>";
 ?>
 </form>
 
