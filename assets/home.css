@@ -1,0 +1,129 @@
+@font-face {
+  font-family: "Myanmar-Khyay";
+  src: url("./font/Myanmar-Khyay.ttf.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: #545454;
+}
+
+#current_month {
+  position: absolute;
+  margin-left: 471px;
+  margin-top: -2350px;
+}
+
+#month {
+  position: absolute;
+  color: white;
+  font-size: 32px;
+  font-family: "Myanmar-Khyay";
+  width: 195px;
+  height: 46px;
+  line-height: 50px;
+  padding-left: 33px;
+  padding-right: 4px;
+  background-color: #3660fa;
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  box-shadow: 0px 5px 5px #00000062;
+  margin-left: 729px;
+  margin-top: -391px;
+  text-shadow: 0px 5px 5px #00000062;
+}
+
+#cardimg {
+  border-radius: 30px;
+  box-shadow: 0px 6px 10px #00000062;
+}
+
+#incomeBox {
+  width: 400px;
+  height: 152px;
+  border-radius: 30px;
+  box-shadow: 0px 6px 6px #00000062;
+  background-color: #333333;
+  margin-left: 729px;
+  margin-top: -327px;
+  border-radius: 30px;
+}
+
+#incometext {
+  position: absolute;
+  display: inline-block;
+  color: #a1a1a1;
+  font-size: 32px;
+  font-family: "Myanmar-Khyay";
+  padding-left: 784px;
+  margin-top: -135px;
+}
+
+#incomepng {
+  position: absolute;
+  padding-left: 916px;
+  margin-top: -126px;
+}
+
+#income {
+  font-family: "Myanmar-Khyay";
+  font-size: 40px;
+  color: white;
+  padding-left: 784px;
+  margin-top: -95px;
+}
+
+#expenseBox {
+  width: 400px;
+  height: 152px;
+  border-radius: 30px;
+  box-shadow: 0px 6px 6px #00000062;
+  background-color: #333333;
+  margin-left: 729px;
+  border-radius: 30px;
+  margin-top: -5px;
+}
+
+#expensetext {
+  position: absolute;
+  display: inline-block;
+  color: #a1a1a1;
+  font-size: 32px;
+  font-family: "Myanmar-Khyay";
+  padding-left: 784px;
+  margin-top: -135px;
+}
+
+#expensepng {
+  position: absolute;
+  margin-left: 929px;
+  margin-top: -126px;
+}
+
+#expense {
+  font-family: "Myanmar-Khyay";
+  font-size: 40px;
+  color: white;
+  padding-left: 784px;
+  margin-top: -95px;
+}
+
+#summary {
+  position: absolute;
+  color: white;
+  font-size: 32px;
+  font-family: "Myanmar-Khyay";
+  width: 156px;
+  height: 46px;
+  line-height: 50px;
+  padding-left: 38px;
+  padding-right: 38px;
+  background-color: #3660fa;
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  box-shadow: 0px 5px 5px #00000062;
+  margin-left: 471px;
+  margin-top: -1815px;
+  text-shadow: 0px 5px 5px #00000062;
+}
