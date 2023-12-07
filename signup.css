@@ -1,0 +1,54 @@
+body{
+    margin-top: 20%;
+    background-color: #545454;
+}
+
+h2{
+    color: white;
+}
+
+.signupForm{
+    margin-left: 70%;
+    width: 250px;
+    text-align: center;
+    padding: 0px;
+}
+
+.id{
+    width: 260px;
+    height: 30px;
+    margin-left: -6px;
+}
+
+.pw{
+    width: 260px;
+    height: 30px;
+    margin-left: -6px;
+}
+
+.idForm{
+    margin:10px;
+}
+
+.passForm{
+    margin:10px;
+}
+
+.emailForm{
+    margin:10px;
+}
+
+.confirmpassForm{
+    margin:10px;
+}
+
+.btn{
+    margin-left: 6px;
+    width: 255px;
+    height: 24px;
+    background-color: #3660FA;
+    color: white;
+    text-align: center;
+    border: 0;
+    font-size: 12px;
+}
