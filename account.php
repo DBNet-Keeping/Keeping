@@ -52,52 +52,53 @@ $result = $conn->query($getAccountQuery);
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel=stylesheet href='account.css' type='text/css'>
+    <link rel=stylesheet href='assets\navbar.css' type='text/css'>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>계좌 관리</title>
 </head>
 <body>
-<h1>계좌 관리</h1>
+    <span id='navbar'>
+        <?php include 'navbar.php'; ?>
+    </span>
+<form method="post" action="" class="accountForm">
+    <h1>Account Management</h1>
 
-<h2>계좌 추가</h2>
-<form method="post" action="">
-    <label for="account_num">계좌 번호:</label>
-    <input type="text" name="account_num" required><br>
+    <h2>Add Account</h2>
+    <input type="text" name="account_num" class="account_num" placeholder="account num"><br>
+    <input type="text" name="bank_name" class="bank_name" placeholder="bank name"><br>
+    <input type="text" name="balance" class="balance" placeholder="balance"><br>
+    <input type="text" name="deposit_and_withdrawal_status" class="deposit_and_withdrawal_status" placeholder="deposit_and_withdrawal_status"><br>
+    <br>
+    <input type="submit" name="addAccount" value="add account">
+    <h2>Account List</h2>
+    <?php
+        $result = $conn->query($getAccountQuery);
 
-    <label for="bank_name">은행 이름:</label>
-    <input type="text" name="bank_name" required><br>
+        if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<div class='account-info'>";
+            echo "<p>";
+            echo $row['bank_name'] . "   ";
+            echo $row['account_number'] . "<br>";
+            echo "Balance : " . $row['balance'] . " ₩<br>";
+            echo "deposit_and_withdrawal_status " . ($row['deposit_and_withdrawal_status'] == 1 ? "O" : "X") . "<br>";
+            echo "<br>";
+            // 삭제 폼 추가
+            echo "<form method='post' action='' class='delete-form'>";
+            echo "<input type='hidden' name='deleteAccountNum' value='" . $row['account_number'] . "'>";
+            echo "<input type='submit' name='deleteAccount' value='delete account'>";
+            echo "</form>";
 
-    <label for="balance">잔액:</label>
-    <input type="text" name="balance" required><br>
-
-    <label for="deposit_and_withdrawal_status">입출금 가능여부:</label>
-    <input type="text" name="deposit_and_withdrawal_status" required><br>
-
-    <input type="submit" name="addAccount" value="계좌 추가">
+            echo "------------------------";
+            echo "</p>";
+        }
+    } else {
+        echo "NULL.";
+    }
+?>
 </form>
 
-<h2>계좌 목록</h2>
-<?php
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo "<p>";
-        echo "계좌 번호: " . $row['account_number'] . "<br>";
-        echo "은행 이름: " . $row['bank_name'] . "<br>";
-        echo "잔액 : " . $row['balance'] . " ₩<br>";
-        echo "입출금 가능여부: " . ($row['deposit_and_withdrawal_status'] == 1 ? "O" : "X") . "<br>";
-
-        // 삭제 폼 추가
-        echo "<form method='post' action=''>";
-        echo "<input type='hidden' name='deleteAccountNum' value='" . $row['account_number'] . "'>";
-        echo "<input type='submit' name='deleteAccount' value='계좌 삭제'>";
-        echo "</form>";
-
-        echo "------------------------";
-        echo "</p>";
-    }
-} else {
-    echo "계좌가 없습니다.";
-}
-?>
 </body>
 </html>

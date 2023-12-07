@@ -43,7 +43,8 @@
             <br>
             <br>
             <h1>BUDGET</h1>
-            <h3><a href="account.php">Deposit and withdrawal account</a></h3>
+            <h3><a href="account.php">Total account</a></h3>
+            <h3><a href="yes_account.php">Deposit and withdrawal account</a></h3>
             <h3><a href="non-account.php">Non-Deposit and withdrawal account</a></h3>
         </div>
     </div>
