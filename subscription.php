@@ -16,8 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 
     <!-- script -->
-    <script src="main.js"></script>
-
+    <script src="assets\subscription.js"></script>
     <!-- DB Connection -->
 </head>
 <body>
@@ -50,11 +49,11 @@
             </div>
         </div>
         <div id="subinfoform">
-                <form method="POST" action="subscriptiondb.php" class="subForm">
+                <form method="POST" action="subscriptiondb.php" class="subForm" id="subForm">
                     <h2 id="subTitle">- SUBSCRIPTION REGISTER</h2>
-                    <div class="SubidForm">
+                    <div class="SubnameForm">
                         <index>subscription name</index>
-                        <input type="text" name="subid" class="subid" placeholder="Please enter subscription name" id="subid">
+                        <input type="text" name="subname" class="subname" placeholder="Please enter subscription name" id="subname">
                     </div>
                     <div class="PaydateForm">
                         <index>last payment date</index>
@@ -69,9 +68,7 @@
                         <input type="int" name="payprice" class="pay" placeholder="Please enter subscription price (only number) " id="price">
                     </div>
                     <div class="submitBtn">
-                        <button type="submit" class="btn" id="subbtn" onclick="submitBtn()">
-                            SUBMIT
-                        </button>
+                        <input type="submit" name='subbtn' class="btn" id="subbtn" value="SUBMIT">
                     </div>
                 </form>
                 <div id="subinfoprint">
