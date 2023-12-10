@@ -15,10 +15,10 @@
   </div>
   <div class="sidebar">
     <ul class="bar-ul">
-      <li class="home_li"><a class="side" href="#" id="home">HOME</a></li>
+      <li class="home_li"><a class="side" href="home.php" id="home">HOME</a></li>
       <li class="home_li"><a class="side" href="#" id="transaction">TRANSACTION</a></li>
       <li class="home_li"><a class="side" href="#" id="category">CATEGORY</a></li>
-      <li class="home_li"><a class="side" href="#" id="subscription">SUBSCRIPTION</a></li>
+      <li class="home_li"><a class="side" href="subscription.php" id="subscription">SUBSCRIPTION</a></li>
       <li class="home_li"><a class="side" href="mypage.php" id="mypage">MY PAGE</a></li>
     </ul>
   </div>
