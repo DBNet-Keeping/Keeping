@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="assets\calendar.css">
     <script src="assets\calendar.js" defer></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 
     <!-- script -->
     <script src="main.js"></script>
@@ -24,8 +24,8 @@
     <span id='navbar'>
         <?php include 'navbar.php'; ?>
     </span>
+    <h2 id="title">- SUBSCRIPTION</h2>
     <span id="calender_id">
-        <p id="title">SUBSCRIPTION</p>
         <div class='body-class'>
             <div class="wrapper">
                 <header id="header">
@@ -49,6 +49,37 @@
                 </div>
             </div>
         </div>
+        <div id="subinfoform">
+                <form method="POST" action="subscriptiondb.php" class="subForm">
+                    <h2 id="subTitle">- SUBSCRIPTION REGISTER</h2>
+                    <div class="SubidForm">
+                        <index>subscription name</index>
+                        <input type="text" name="subid" class="subid" placeholder="Please enter subscription name" id="subid">
+                    </div>
+                    <div class="PaydateForm">
+                        <index>last payment date</index>
+                        <input type="date" name="paydate" class="pay" id="paydate">
+                    </div>
+                    <div class="PaycycleForm">
+                        <index id="cycleindex1">next payment date<br>(payment cycle)</index>
+                        <input type="date" name="paycycle" class="pay" id="paycycle">
+                    </div>
+                    <div class="PaypriceForm">
+                        <index>subscription price</index>
+                        <input type="int" name="payprice" class="pay" placeholder="Please enter subscription price (only number) " id="price">
+                    </div>
+                    <div class="submitBtn">
+                        <button type="submit" class="btn" id="subbtn" onclick="submitBtn()">
+                            SUBMIT
+                        </button>
+                    </div>
+                </form>
+                <div id="subinfoprint">
+                    <p>LIST</p>
+                    <p id="plus"></p>
+                </div>
+            </div>
+            <div class="background-image"><img src='assets\image\004.png' id="backimg"></div>
     </span>
 </body>
 </html>
