@@ -1,0 +1,138 @@
+@font-face {
+  font-family: "Myanmar-Khyay";
+  src: url("./font/Myanmar-Khyay.ttf.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Noto+Sans+KR:wght@300&display=swap");
+
+#title {
+  position: absolute;
+  width: 275px;
+  height: 43px;
+  line-height: 47px;
+  color: #ffffff;
+  font-size: 32px;
+  font-family: "Myanmar-Khyay";
+  padding-left: 23px;
+  padding-right: 33px;
+  text-shadow: 0px 5px 5px #00000062;
+  margin-left: 489px;
+  margin-top: -2350px;
+}
+
+#subTitle {
+  color: #ffffff;
+  font-size: 30px;
+  font-family: "Myanmar-Khyay";
+  text-shadow: 0px 5px 5px #00000062;
+  width: 420px;
+  height: 43px;
+  line-height: 47px;
+  padding-left: 25px;
+  padding-right: 35px;
+}
+
+#subinfoform {
+  width: fit-content;
+  height: fit-content;
+  margin-left: 489px;
+  margin-top: 680px;
+}
+
+#subinfoprint {
+  position: absolute;
+  width: 450px;
+  height: 505px;
+  background-color: #3660fa;
+  border-radius: 15px;
+  margin-top: -1125px;
+  margin-left: 457px;
+}
+
+#backimg {
+  z-index: -1;
+  position: absolute;
+  margin-top: -455px;
+  margin-left: 490px;
+  width: 1020px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 30px;
+  opacity: 0.7;
+  box-shadow: 0px 5px 5px #000000c0;
+}
+
+#subinfoform index {
+  font-family: "Myanmar-Khyay";
+  color: #ffffff;
+  font-size: 25px;
+  text-shadow: 0px 5px 5px #00000062;
+  /*display: block;
+  padding-bottom: 5px;*/
+}
+
+#subbtn {
+  background-color: #e9e9e9;
+  font-family: "Myanmar-Khyay";
+  font-size: 16px;
+  color: #0f1f58;
+  border-style: none;
+  border-radius: 30px;
+  width: 425px;
+  height: 45px;
+  line-height: 46px;
+  box-shadow: 0px 5px 5px #00000062;
+  margin-top: 60px;
+  margin-left: 314px;
+}
+
+#subbtn:hover {
+  box-shadow: 0px 10px 5px #000000b0;
+}
+
+.SubidForm,
+.PaydateForm,
+.PaycycleForm,
+.PaypriceForm {
+  margin-top: 35px;
+  margin-left: 40px;
+  input {
+    background-color: rgb(233, 233, 233);
+    border-style: none;
+    width: 400px;
+    height: 40px;
+    border-radius: 15px;
+    font-family: "Noto Sans KR", sans-serif;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: 0px 5px 5px #00000062;
+  }
+}
+
+.SubidForm {
+  margin-top: 70px;
+}
+
+.PaycycleForm input {
+  height: 60px;
+}
+
+#subid {
+  margin-left: 270px;
+}
+
+#paydate {
+  margin-left: 276px;
+}
+
+#paycycle {
+  margin-left: 307px;
+  position: absolute;
+  margin-top: -32px;
+}
+
+#price {
+  margin-left: 278px;
+}
