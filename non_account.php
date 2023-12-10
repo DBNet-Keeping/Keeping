@@ -11,7 +11,7 @@ mysqli_select_db($conn, $db_name);
 $user_id = $_SESSION['username'];
 
 // 사용자의 계좌 정보를 가져오는 쿼리
-$getAccountQuery = "SELECT * FROM account WHERE a_user_id = '$user_id'";
+$getAccountQuery = "SELECT a.*, b.bank_name FROM account a JOIN bank b ON a.a_bank_id = b.bank_id WHERE a.a_user_id = '$user_id'";
 $result = $conn->query($getAccountQuery);
 ?>
 

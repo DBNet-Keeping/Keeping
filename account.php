@@ -28,9 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             // Map bank_name to a_bank_id
             $bankIdMap = [
-                '농협' => 1,
-                '신한' => 2,
-                '신협' => 3,
+                'NH' => 1,
+                'ShinHan' => 2,
+                'Shin' => 3,
+                'KB' => 4,
+                'SC' => 5,
+                'Kakaobank' => 6,
             ];
 
             // Get a_bank_id based on the selected bank_name
@@ -88,9 +91,12 @@ $result1 = $conn->query($getAccountQuery);
     <h2>Add Account</h2>
     <input type="text" name="account_num" class="account_num" placeholder="account num"><br>
     <select name="bank_name" class="bank_name">
-        <option value="농협">농협</option>
-        <option value="신협">신협</option>
-        <option value="신한">신한</option>
+        <option value="농협">NH</option>
+        <option value="신협">ShinHan</option>
+        <option value="신한">Shin</option>
+        <option value="농협">KB</option>
+        <option value="신협">SC</option>
+        <option value="신한">Kakaobank</option>
     </select><br>
     <input type="text" name="balance" class="balance" placeholder="balance"><br>
     <input type="text" name="deposit_and_withdrawal_status" class="deposit_and_withdrawal_status" placeholder="deposit_and_withdrawal_status"><br>
