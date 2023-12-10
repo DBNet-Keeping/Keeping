@@ -8,7 +8,7 @@
           <a href="home.php"><img id="logo" src="assets\image\logo.png" /></a>
         </li>
         <li id="logout-li">
-          <a id="logout" href="#">LOGOUT</a>
+          <a id="logout" href="logout.php">LOGOUT</a>
         </li>
       </ul>
     </nav>
