@@ -32,20 +32,20 @@
         <br>
         <br>
         <img src="user_img.png" alt="회원 사진" class="user_img">
-        <h3>HI! <?php echo $loggedInUserId; ?></h3>
+        <h1>HI! <?php echo $loggedInUserId; ?></h1>
         <h3><?php echo $loggedInEmail; ?></h3>
         <br>
         <a href="modify.php" class="modify">Modify Member Information</a>
         <br>
         <br>
-        <a href="delete.php" class="delete">Delete Member Information</a>
+        <a href="delete.php" class="delete">Unregister</a>
         <div class="budget">
             <br>
             <br>
             <h1>BUDGET</h1>
             <h3><a href="account.php">Total account</a></h3>
             <h3><a href="yes_account.php">Deposit and withdrawal account</a></h3>
-            <h3><a href="non-account.php">Non-Deposit and withdrawal account</a></h3>
+            <h3><a href="non_account.php">Non-Deposit and withdrawal account</a></h3>
         </div>
     </div>
 

@@ -23,7 +23,7 @@ a{
     color: white;
 }
 
-.modify{
+a.modify{
     padding-top: 5px;
     padding-bottom: 5px;
     padding-right: 10px;
@@ -32,10 +32,11 @@ a{
     background-color: #3660FA;
     color: rgb(255, 255, 255);
     border: 0;
-    font-size: 12px;
+    font-size: 18px;
+    border-radius: 10px;
 }
 
-.delete{
+a.delete{
     padding-top: 5px;
     padding-bottom: 5px;
     padding-right: 10px;
@@ -43,6 +44,7 @@ a{
     background-color: #3660FA;
     color: rgb(255, 255, 255);
     border: 0;
-    font-size: 12px;
+    font-size: 18px;
+    border-radius: 10px;
 }
 
