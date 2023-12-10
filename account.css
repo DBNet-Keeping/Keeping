@@ -17,6 +17,32 @@ body{
     border-radius: 15px;
 }
 
+/* 전체 select 요소 스타일링 */
+select.bank_name {
+    width: 260px;
+    height: 35px;
+    margin: 5px;
+    font-size: 15px;
+    cursor: pointer; /* 커서를 손가락으로 변경 */
+}
+
+/* 선택된 옵션의 스타일링 */
+select.bank_name option:checked {
+    background-color: #3660FA; /* 선택된 옵션 배경색 */
+    color: white; /* 선택된 옵션 글꼴 색상 */
+}
+
+/* 드롭다운 화살표 아이콘 스타일링 */
+select.bank_name::after {
+    content: '\25BC'; /* 유니코드로 화살표 아이콘 설정 */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    pointer-events: none; /* 드롭다운을 클릭할 수 있도록 이벤트 차단 해제 */
+}
+
 
 
 input[type="text"]{

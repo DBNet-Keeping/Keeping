@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // 사용자의 계좌 정보를 가져오는 쿼리
-$getAccountQuery = "SELECT a.*, b.bank_name FROM account a JOIN bank b ON a.a_bank_id = b.bank_id WHERE a.a_user_id = '$user_id'";
+$getAccountQuery = "SELECT a.*, b.bank_name, b.bank_img FROM account a JOIN bank b ON a.a_bank_id = b.bank_id WHERE a.a_user_id = '$user_id'";
 $result1 = $conn->query($getAccountQuery);
 ?>
 
@@ -91,12 +91,12 @@ $result1 = $conn->query($getAccountQuery);
     <h2>Add Account</h2>
     <input type="text" name="account_num" class="account_num" placeholder="account num"><br>
     <select name="bank_name" class="bank_name">
-        <option value="농협">NH</option>
-        <option value="신협">ShinHan</option>
-        <option value="신한">Shin</option>
-        <option value="농협">KB</option>
-        <option value="신협">SC</option>
-        <option value="신한">Kakaobank</option>
+        <option value="NH">NH</option>
+        <option value="ShinHan">ShinHan</option>
+        <option value="Shin">Shin</option>
+        <option value="KB">KB</option>
+        <option value="SC">SC</option>
+        <option value="Kakaobank">Kakaobank</option>
     </select><br>
     <input type="text" name="balance" class="balance" placeholder="balance"><br>
     <input type="text" name="deposit_and_withdrawal_status" class="deposit_and_withdrawal_status" placeholder="deposit_and_withdrawal_status"><br>
@@ -110,6 +110,8 @@ $result1 = $conn->query($getAccountQuery);
         while ($row1 = $result1->fetch_assoc()) {
             echo "<div class='account-info'>";
             echo "<p>";
+            $bankImage = $row1['bank_img'];
+            echo "<img src='$bankImage' alt='Bank Image'><br>";
             echo $row1['bank_name'] . "   ";
             echo $row1['account_number'] . "<br>";
             echo "Balance : " . $row1['balance'] . " ₩<br>";
