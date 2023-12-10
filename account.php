@@ -26,13 +26,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($duplicateResult->num_rows > 0) {
             echo "<script>alert('이미 존재하는 계좌 번호입니다.')</script>";
         } else {
+            // Map bank_name to a_bank_id
+            $bankIdMap = [
+                '농협' => 1,
+                '신한' => 2,
+                '신협' => 3,
+            ];
+
+            // Get a_bank_id based on the selected bank_name
+            $a_bank_id = isset($bankIdMap[$bank_name]) ? $bankIdMap[$bank_name] : null;
+
             // 사용자의 계좌 정보를 추가하는 쿼리
-            $insertAccountQuery = "INSERT INTO account (account_number, bank_name, balance, deposit_and_withdrawal_status, a_user_id) VALUES ('$account_num', '$bank_name', $balance, '$deposit_and_withdrawal_status', '$user_id')";
+            $insertAccountQuery = "INSERT INTO account (account_number, balance, deposit_and_withdrawal_status, a_user_id, a_bank_id) VALUES ('$account_num', $balance, '$deposit_and_withdrawal_status', '$user_id', $a_bank_id)";
 
             if ($conn->query($insertAccountQuery) === TRUE) {
                 echo "<script>alert('계좌 추가에 성공했습니다')</script>";
             } else {
-                 echo "<script>alert('계좌 추가 실패 : ')</script>" . $conn->error;
+                echo "<script>alert('계좌 추가 실패 : ')</script>" . $conn->error;
             }
         }
     }
@@ -53,8 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // 사용자의 계좌 정보를 가져오는 쿼리
-$getAccountQuery = "SELECT * FROM account WHERE a_user_id = '$user_id'";
-$result = $conn->query($getAccountQuery);
+$getAccountQuery = "SELECT a.*, b.bank_name FROM account a JOIN bank b ON a.a_bank_id = b.bank_id WHERE a.a_user_id = '$user_id'";
+$result1 = $conn->query($getAccountQuery);
 ?>
 
 <!DOCTYPE html>
@@ -77,39 +87,43 @@ $result = $conn->query($getAccountQuery);
 
     <h2>Add Account</h2>
     <input type="text" name="account_num" class="account_num" placeholder="account num"><br>
-    <input type="text" name="bank_name" class="bank_name" placeholder="bank name"><br>
+    <select name="bank_name" class="bank_name">
+        <option value="농협">농협</option>
+        <option value="신협">신협</option>
+        <option value="신한">신한</option>
+    </select><br>
     <input type="text" name="balance" class="balance" placeholder="balance"><br>
     <input type="text" name="deposit_and_withdrawal_status" class="deposit_and_withdrawal_status" placeholder="deposit_and_withdrawal_status"><br>
     <br>
     <input type="submit" name="addAccount" value="add account">
     <h2>Account List</h2>
     <?php
-        $result = $conn->query($getAccountQuery);
-        $totalBalance = 0; // 총액을 저장할 변수 초기화
+        $result1 = $conn->query($getAccountQuery);
+        $totalBalance = 0;
 
-        if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
+        while ($row1 = $result1->fetch_assoc()) {
             echo "<div class='account-info'>";
             echo "<p>";
-            echo $row['bank_name'] . "   ";
-            echo $row['account_number'] . "<br>";
-            echo "Balance : " . $row['balance'] . " ₩<br>";
-            echo "deposit_and_withdrawal_status " . ($row['deposit_and_withdrawal_status'] == 1 ? "O" : "X") . "<br>";
+            echo $row1['bank_name'] . "   ";
+            echo $row1['account_number'] . "<br>";
+            echo "Balance : " . $row1['balance'] . " ₩<br>";
+            echo "deposit_and_withdrawal_status " . ($row1['deposit_and_withdrawal_status'] == 1 ? "O" : "X") . "<br>";
             echo "<br>";
 
             // 계좌 금액을 총액에 더함
-            $totalBalance += $row['balance'];
+            $totalBalance += $row1['balance'];
 
             // 삭제 폼 추가
             echo "<form method='post' action='' class='delete-form'>";
-            echo "<input type='hidden' name='deleteAccountNum' value='" . $row['account_number'] . "'>";
+            echo "<input type='hidden' name='deleteAccountNum' value='" . $row1['account_number'] . "'>";
             echo "<input type='submit' name='deleteAccount' value='delete account'>";
             echo "</form>";
 
             echo "------------------------";
             echo "</p>";
         }
-    } else {
+
+        if ($result1->num_rows == 0) {
         echo "NULL.";
     }
 
@@ -117,6 +131,5 @@ $result = $conn->query($getAccountQuery);
     echo "<p>Total Balance: " . $totalBalance . " ₩</p>";
 ?>
 </form>
-
 </body>
 </html>
