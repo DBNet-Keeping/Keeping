@@ -14,7 +14,7 @@ body {
 #calender_id {
   position: absolute;
   top: 160px;
-  margin-left: 480px;
+  margin-left: 380px;
   z-index: -5;
 }
 
