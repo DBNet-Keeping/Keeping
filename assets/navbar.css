@@ -1,7 +1,7 @@
 .bar-ul {
   list-style-type: none;
   margin: 0px;
-  z-index: 100;
+  z-index: 50;
 }
 
 .side,
@@ -47,6 +47,7 @@
   margin-left: -8px;
   font-family: "Inter", sans-serif;
   font-size: 12px;
+  z-index: 500;
 }
 
 .home_li {
@@ -69,20 +70,25 @@
 
 #home {
   padding-right: 131px;
+  z-index: 50;
 }
 
 #transaction {
   padding-right: 77px;
+  z-index: 50;
 }
 
 #category {
   padding-right: 101px;
+  z-index: 50;
 }
 
 #subscription {
   padding-right: 74px;
+  z-index: 50;
 }
 
 #mypage {
   padding-right: 113px;
+  z-index: 50;
 }

@@ -19,7 +19,8 @@
     <script src="assets\subscription.js"></script>
     <!-- DB Connection -->
 </head>
-<body>
+<body style="
+    height: 1px; width: 1px;">
     <span id='navbar'>
         <?php include 'navbar.php'; ?>
     </span>
@@ -72,8 +73,8 @@
                     </div>
                 </form>
                 <div id="subinfoprint">
-                    <p>LIST</p>
-                    <p id="plus"></p>
+                    <h3>LIST</h3>
+                    <!-- <p id="plus"></p> -->
                 </div>
             </div>
             <div class="background-image"><img src='assets\image\004.png' id="backimg"></div>

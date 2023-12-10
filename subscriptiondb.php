@@ -37,4 +37,23 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo '<script>window.location.href = "subscription.php";</script>';
     }
 }
+
+// 데이터베이스에서 데이터 가져오기
+$sql = "SELECT subscription_name, payment_date, payment_cycle FROM subscription WHERE s_user_id = '$userid'";
+$result = $conn->query($sql);
+
+// 결과를 배열로 변환
+$data = array();
+if($result->num_rows > 0){
+    while($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+}
+
+// JSON 형식으로 출력
+header("Content-Type: application/json");
+echo json_encode($data);
+
+// $data 배열에는 각 행의 데이터가 연관 배열로 저장됨
+print_r($data);
 ?>
