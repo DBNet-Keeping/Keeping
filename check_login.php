@@ -7,10 +7,12 @@
 <body>
    <?php
    session_start();
-   $host = 'localhost:3306';
-   $user = 'root';
-   $pw = 'root';
+
+   include_once 'dbconfig.php';
+   
    $db_name = 'keeping';
+   mysqli_select_db($conn, $db_name);
+
       $mysqli = new mysqli($host, $user, $pw, $db_name); //db 연결
       //login.php에서 입력받은 id, password
       $username = $_POST['id'];
@@ -23,7 +25,7 @@
       //결과가 존재하면 세션 생성
       if ($row != null) {
          $_SESSION['username'] = $row['user_id'];
-         $_SESSION['email'] = $row['nickname'];
+         $_SESSION['name'] = $row['name'];
          echo "<script>location.replace('home.php');</script>";
          exit;
       }
@@ -34,5 +36,5 @@
          echo "<script>location.replace('login.php');</script>";
          exit;
       }
-      ?>
+   ?>
    </body>
