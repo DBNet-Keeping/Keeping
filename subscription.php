@@ -188,5 +188,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="background-image"><img src='assets\image\004.png' id="backimg"></div>
     </span>
+    <span class="container-fluid" id="footer">
+        copyright ⓒ DBNet 2023.
+    </span>
 </body>
 </html>
