@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($conn->query($insertTransactionQuery) === TRUE) {
                     echo "<script>alert('거래 추가에 성공했습니다.');
-                    location.replace("transaction.php");</script>";
+                    location.replace('transaction.php');</script>";
 
         } else {
             echo "<script>alert('거래 추가 실패 : ')</script>" . $conn->error;
