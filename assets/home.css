@@ -12,7 +12,7 @@ body {
 #current_month {
   position: absolute;
   margin-left: 471px;
-  margin-top: -2350px;
+  margin-top: 88px;
 }
 
 #month {
@@ -30,7 +30,7 @@ body {
   border-bottom-right-radius: 30px;
   box-shadow: 0px 5px 5px #00000062;
   margin-left: 729px;
-  margin-top: -391px;
+  margin-top: -395px;
   text-shadow: 0px 5px 5px #00000062;
 }
 
@@ -124,6 +124,27 @@ body {
   border-bottom-right-radius: 30px;
   box-shadow: 0px 5px 5px #00000062;
   margin-left: 471px;
-  margin-top: -1815px;
+  margin-top: 626px;
   text-shadow: 0px 5px 5px #00000062;
+}
+
+#MonthIncomeChart {
+  width: 600px;
+  height: 400px;
+  padding-left: 20px;
+}
+
+#homeG {
+  margin-top: 750px;
+  margin-left: 500px;
+}
+#footer {
+  display: block;
+  width: 1700px;
+  height: 50px;
+  margin-top: 60px;
+  font-size: 10px;
+  padding-left: 30px;
+  line-height: 50px;
+  color: whitesmoke;
 }
