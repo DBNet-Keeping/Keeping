@@ -12,7 +12,19 @@ body {
 #current_month {
   position: absolute;
   margin-left: 471px;
-  margin-top: 88px;
+  margin-top: 100px;
+}
+
+#currentB {
+  position: absolute;
+  color: white;
+  font-size: 54px;
+  font-family: "Myanmar-Khyay";
+  width: 459px;
+  height: 55px;
+  line-height: 50px;
+  margin-top: -265px;
+  margin-left: 66px;
 }
 
 #month {
@@ -37,6 +49,8 @@ body {
 #cardimg {
   border-radius: 30px;
   box-shadow: 0px 6px 10px #00000062;
+  width: 689px;
+  height: 391px;
 }
 
 #incomeBox {
@@ -124,7 +138,7 @@ body {
   border-bottom-right-radius: 30px;
   box-shadow: 0px 5px 5px #00000062;
   margin-left: 471px;
-  margin-top: 626px;
+  margin-top: 650px;
   text-shadow: 0px 5px 5px #00000062;
 }
 
