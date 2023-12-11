@@ -1,3 +1,90 @@
+<?php
+    session_start();                    // 세션 시작
+    error_reporting(E_ALL);             // 모든 에러 표시 설정
+    ini_set("display_errors",1);
+    include_once 'dbconfig.php';        // 데이터베이스 설정 파일 포함
+                    
+    // 데이터베이스 선택
+    $db_name = 'keeping';
+    mysqli_select_db($conn, $db_name);
+                    
+    // 사용자의 user id를 세션에서 가져옴
+    $userid = $_SESSION['username'];
+
+    $currentDate = new DateTime();
+    $this_month = $currentDate->format('n');    // 현재 month
+    $last_month = $currentDate->modify('-1 month')->format('n');  // 이전 month
+
+    // 수입
+    $LastM_IDataQuery = "SELECT price FROM transaction WHERE MONTH(date_t) = '$last_month' AND deposit_or_withdrawal = '+' AND t_user_id = '$userid'";
+    $LastM_IDataQueryResult = $conn->query($LastM_IDataQuery);
+    $ThisM_IDataQuery = "SELECT price FROM transaction WHERE MONTH(date_t) = '$this_month' AND deposit_or_withdrawal = '+' AND t_user_id = '$userid'";
+    $ThisM_IDataQueryResult = $conn->query($ThisM_IDataQuery);
+    $L_TotalIprice = 0;
+    $T_TotalIprice = 0;
+
+    if($LastM_IDataQueryResult->num_rows > 0){
+        while($L_Irow = $LastM_IDataQueryResult->fetch_assoc()){
+            $L_resultIprice = $L_Irow['price'];
+            $L_TotalIprice += $L_resultIprice;
+        }
+    }else if($LastM_IDataQueryResult->num_rows === 0){
+        $L_TotalIprice = 0;
+        }
+
+    if($ThisM_IDataQueryResult->num_rows > 0){
+        while($T_Irow = $ThisM_IDataQueryResult->fetch_assoc()){
+            $T_resultIprice = $T_Irow['price'];
+            $T_TotalIprice += $T_resultIprice;
+            }
+        }else if($ThisM_IDataQueryResult->num_rows === 0){
+            $T_TotalIprice = 0;
+        }
+
+    // 지출
+    $LastM_EDataQuery = "SELECT price FROM transaction WHERE MONTH(date_t) = '$last_month' AND deposit_or_withdrawal = '-' AND t_user_id = '$userid'";
+    $LastM_EDataQueryResult = $conn->query($LastM_EDataQuery);
+    $ThisM_EDataQuery = "SELECT price FROM transaction WHERE MONTH(date_t) = '$this_month' AND deposit_or_withdrawal = '-' AND t_user_id = '$userid'";
+    $ThisM_EDataQueryResult = $conn->query($ThisM_EDataQuery);
+    $L_TotalEprice = 0;
+    $T_TotalEprice = 0;
+
+    if($LastM_EDataQueryResult->num_rows > 0){
+        while($L_Erow = $LastM_EDataQueryResult->fetch_assoc()){
+            $L_resultEprice = $L_Erow['price'];
+            $L_TotalEprice += $L_resultEprice;
+        }
+    }else if($LastM_EDataQueryResult->num_rows === 0){
+        $L_TotalEprice = 0;
+    }
+
+    if($ThisM_EDataQueryResult->num_rows > 0){
+        while($T_Erow = $ThisM_EDataQueryResult->fetch_assoc()){
+            $T_resultEprice = $T_Erow['price'];
+            $T_TotalEprice += $T_resultEprice;
+        }
+    }else if($ThisM_EDataQueryResult->num_rows === 0){
+        $T_TotalEprice = 0;
+    }
+    $income_P = "₩ " . $T_TotalIprice;
+    $expense_P = "₩ ". $T_TotalEprice;
+
+    // 입출금 가능한 통장들 잔고 확인
+    $CurrentBalanceQuery = "SELECT balance FROM account WHERE deposit_and_withdrawal_status = 1 AND a_user_id = '$userid'";
+    $CurrentBalanceResult = $conn ->query($CurrentBalanceQuery);
+    $current_ = 0;
+    
+    if($CurrentBalanceResult->num_rows > 0){
+        while($B_row = $CurrentBalanceResult->fetch_assoc()){
+            $CurrentBalance = $B_row["balance"];
+            $current_ += $CurrentBalance;
+        }
+    }else if($CurrentBalanceResult->num_rows === 0){
+        $current_ = 0;
+    }
+    $current_P = "₩ " . $current_;
+?>
+                
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,85 +111,31 @@
     </span>
     <span id="current_month">
         <img id="cardimg" src="assets\image\card_frame.png">
+        <p id="currentB">
+            <script>
+                var currentP = <?php echo json_encode($current_P)?>;
+                document.getElementById("currentB").textContent = currentP;
+            </script>
+        </p>
         <p id="month"></p>
-        <p id="incomeBox"><p id="incometext">Income</p><img id="incomepng" src="assets\image\up.png"><p id="income">₩</p></p>
-        <p id="expenseBox"><p id="expensetext">Expense</p><img id="expensepng" src="assets\image\down.png"><p id="expense">₩</p></p>
+        <p id="incomeBox"><p id="incometext">Income</p><img id="incomepng" src="assets\image\up.png"><p id="income">
+            <script>
+                var incomeP = <?php echo json_encode($income_P)?>;
+                document.getElementById("income").textContent = incomeP;
+            </script>
+        </p></p>
+        <p id="expenseBox"><p id="expensetext">Expense</p><img id="expensepng" src="assets\image\down.png"><p id="expense">
+            <script>
+                var expenseP = <?php echo json_encode($expense_P)?>;
+                document.getElementById("expense").textContent = expenseP;
+            </script>
+        </p></p>
     </span>
     <span id="month_summary">
         <p id="summary">Summary</p>
         <div id="homeG">
         <canvas id="MonthIncomeChart"></canvas>
             <script>
-                <?php
-                    session_start();                    // 세션 시작
-                    error_reporting(E_ALL);             // 모든 에러 표시 설정
-                    ini_set("display_errors",1);
-                    include_once 'dbconfig.php';        // 데이터베이스 설정 파일 포함
-                    
-                    // 데이터베이스 선택
-                    $db_name = 'keeping';
-                    mysqli_select_db($conn, $db_name);
-                    
-                    // 사용자의 user id를 세션에서 가져옴
-                    $userid = $_SESSION['username'];
-
-                    $currentDate = new DateTime();
-                    $this_month = $currentDate->format('n');    // 현재 month
-                    $last_month = $currentDate->modify('-1 month')->format('n');  // 이전 month
-
-                    // 수입
-                    $LastM_IDataQuery = "SELECT price FROM transaction WHERE MONTH(date_t) = '$last_month' AND deposit_or_withdrawal = '+' AND t_user_id = '$userid'";
-                    $LastM_IDataQueryResult = $conn->query($LastM_IDataQuery);
-                    $ThisM_IDataQuery = "SELECT price FROM transaction WHERE MONTH(date_t) = '$this_month' AND deposit_or_withdrawal = '+' AND t_user_id = '$userid'";
-                    $ThisM_IDataQueryResult = $conn->query($ThisM_IDataQuery);
-                    $L_TotalIprice = 0;
-                    $T_TotalIprice = 0;
-
-                    if($LastM_IDataQueryResult->num_rows > 0){
-                        while($L_Irow = $LastM_IDataQueryResult->fetch_assoc()){
-                            $L_resultIprice = $L_Irow['price'];
-                            $L_TotalIprice += $L_resultIprice;
-                        }
-                    }else if($LastM_IDataQueryResult->num_rows === 0){
-                        $L_TotalIprice = 0;
-                    }
-
-                    if($ThisM_IDataQueryResult->num_rows > 0){
-                        while($T_Irow = $ThisM_IDataQueryResult->fetch_assoc()){
-                            $T_resultIprice = $T_Irow['price'];
-                            $T_TotalIprice += $T_resultIprice;
-                        }
-                    }else if($ThisM_IDataQueryResult->num_rows === 0){
-                        $T_TotalIprice = 0;
-                    }
-
-                    // 지출
-                    $LastM_EDataQuery = "SELECT price FROM transaction WHERE MONTH(date_t) = '$last_month' AND deposit_or_withdrawal = '-' AND t_user_id = '$userid'";
-                    $LastM_EDataQueryResult = $conn->query($LastM_EDataQuery);
-                    $ThisM_EDataQuery = "SELECT price FROM transaction WHERE MONTH(date_t) = '$this_month' AND deposit_or_withdrawal = '-' AND t_user_id = '$userid'";
-                    $ThisM_EDataQueryResult = $conn->query($ThisM_EDataQuery);
-                    $L_TotalEprice = 0;
-                    $T_TotalEprice = 0;
-
-                    if($LastM_EDataQueryResult->num_rows > 0){
-                        while($L_Erow = $LastM_EDataQueryResult->fetch_assoc()){
-                            $L_resultEprice = $L_Erow['price'];
-                            $L_TotalEprice += $L_resultEprice;
-                        }
-                    }else if($LastM_EDataQueryResult->num_rows === 0){
-                        $L_TotalEprice = 0;
-                    }
-
-                    if($ThisM_EDataQueryResult->num_rows > 0){
-                        while($T_Erow = $ThisM_EDataQueryResult->fetch_assoc()){
-                            $T_resultEprice = $T_Erow['price'];
-                            $T_TotalEprice += $T_resultEprice;
-                        }
-                    }else if($ThisM_EDataQueryResult->num_rows === 0){
-                        $T_TotalEprice = 0;
-                    }
-                ?>
-                
                 var lastMonthIPrice = <?php echo json_encode($L_TotalIprice); ?>;
                 var thisMonthIPrice = <?php echo json_encode($T_TotalIprice); ?>;
 
@@ -183,11 +216,6 @@
                             }
                         }
                     }
-                });
-
-                // 막대의 두께 설정
-                myMonthChart.data.datasets.forEach(dataset => {
-                    dataset.barThickness = 100;
                 });
             </script>
         </div>

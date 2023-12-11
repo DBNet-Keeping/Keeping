@@ -26,8 +26,9 @@
 }
 
 #logo {
-  margin-top: 7px;
+  margin-top: 13px;
   float: left;
+  position: fixed;
 }
 
 #logout {
