@@ -32,9 +32,26 @@
         <br>
         <br>
         <img src="user_img.png" alt="회원 사진" class="user_img">
-        <h1>HI! <?php echo $loggedInUserId; ?></h1>
-        <h3><?php echo $loggedInNickname; ?></h3>
+        <h1>HI! <?php echo $loggedInNickname; ?></h1>
         <br>
+        <?php
+            error_reporting(E_ALL);
+            ini_set("display_errors", 1);
+            include_once 'dbconfig.php';
+        
+            $db_name = 'keeping';
+            mysqli_select_db($conn, $db_name);
+
+            $getEmailQuery = "SELECT email FROM user_email WHERE e_user_id = '$loggedInUserId'";  // 수정: 'e_user_id' -> e_user_id
+            $result = $conn->query($getEmailQuery);
+
+            while ($row = $result->fetch_assoc()) {
+                echo "<div class='account-info'>";
+                echo "<p>";
+                echo $row['email'] . "    ";
+                echo "<p>";
+            }
+?>
         <a href="modify.php" class="modify">Modify Member Information</a>
         <br>
         <br>
