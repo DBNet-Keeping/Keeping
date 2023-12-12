@@ -12,6 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 
+    <link rel=stylesheet href='category.php' type='text/css'>
+
     <!-- Chart.js Script -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -26,7 +28,8 @@
         }
     </style>
 </head>
-<body>
+<body  style="
+    height: 1px; width: 1px;">
     <span id="navbar">
         <?php include 'navbar.php'; ?>
     </span>
@@ -124,6 +127,26 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'top',
+                                labels: {
+                                    color: 'white', // 범례 글자 색상을 흰색으로 변경
+                                    font:{
+                                        family: 'Myanmar-Khyay',
+                                        size: 15
+                                    },
+                                }
+                            }
+                        },
+                        layout: {
+                            padding: {
+                                left: 10,
+                                top: 10,
+                                bottom: 10
+                            }
+                        }
                     }
                 });
             </script>
