@@ -48,3 +48,22 @@ a.delete{
     border-radius: 10px;
 }
 
+.add_email{
+    width: 260px;
+    height: 30px;
+    margin-left: -6px;
+}
+
+.btn_add_email{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: #3660FA;
+    color: rgb(255, 255, 255);
+    border: 0;
+    font-size: 18px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+

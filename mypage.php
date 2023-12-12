@@ -35,23 +35,42 @@
         <h1>HI! <?php echo $loggedInNickname; ?></h1>
         <br>
         <?php
-            error_reporting(E_ALL);
-            ini_set("display_errors", 1);
-            include_once 'dbconfig.php';
-        
-            $db_name = 'keeping';
-            mysqli_select_db($conn, $db_name);
+    error_reporting(E_ALL);
+    ini_set("display_errors", 1);
+    include_once 'dbconfig.php';
 
-            $getEmailQuery = "SELECT email FROM user_email WHERE e_user_id = '$loggedInUserId'";  // 수정: 'e_user_id' -> e_user_id
-            $result = $conn->query($getEmailQuery);
+    $db_name = 'keeping';
+    mysqli_select_db($conn, $db_name);
 
-            while ($row = $result->fetch_assoc()) {
-                echo "<div class='account-info'>";
-                echo "<p>";
-                echo $row['email'] . "    ";
-                echo "<p>";
-            }
+    // 이미 로그인한 사용자의 ID로 가정
+    $loggedInUserId = "test1212";
+
+    $getEmailQuery = "SELECT email FROM user_email WHERE e_user_id = '$loggedInUserId'";
+    $result = $conn->query($getEmailQuery);
+
+    while ($row = $result->fetch_assoc()) {
+        echo "<div class='account-info'>";
+        echo "<h3>";
+        echo $row['email'] . "    ";
+        echo "</h3>";
+    }
 ?>
+
+<form method="post" action="">
+    <input type="text" name="add_email" class="add_email" placeholder="Add Email"><br>
+    <br>
+    <input type="submit" name="addEmail" value="add email" class="btn_add_email">
+</form>
+
+<?php
+    if(isset($_POST['addEmail'])){
+        $New_email = $_POST['add_email'];
+        $insertAccountQuery = "INSERT INTO user_email (e_user_id, email) VALUES ('$loggedInUserId', '$New_email')";
+        
+        $result = $conn->query($insertAccountQuery);
+    }
+?>
+
         <a href="modify.php" class="modify">Modify Member Information</a>
         <br>
         <br>
