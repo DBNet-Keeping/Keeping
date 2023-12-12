@@ -12,10 +12,10 @@ mysqli_select_db($conn, $db_name);
 $sql = "DELETE FROM user WHERE user_id ='$loggedInUserId'";
 
 if ($conn->query($sql) === TRUE) {
-    echo "회원이 성공적으로 삭제되었습니다.";
+    echo "Member successfully deleted.";
     echo "<script>location.replace('login.php');</script>";
 } else {
-    echo "오류: " . $conn->error;
+    echo "Error: " . $conn->error;
 }
 
 // DB 연결 종료

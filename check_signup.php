@@ -16,14 +16,14 @@ $check_duplicate_sql = "SELECT * FROM user WHERE user_id = '$signup_id'";
 $check_duplicate_result = mysqli_query($conn, $check_duplicate_sql);
 
 if (mysqli_num_rows($check_duplicate_result) > 0) {
-    echo '<script>alert("이미 사용 중인 아이디입니다. 다른 아이디를 선택해주세요.");</script>';
+    echo '<script>alert("ID is already in use. Please select another ID.");</script>';
     echo '<script>history.back();</script>';
 } else {
     // 아이디 중복이 아니면 회원가입 진행
     $sql = "INSERT INTO user VALUES ('$signup_id', '$signup_pass', '$signup_nickname')";
     
     if ($signup_id == "" || $signup_nickname == "" || $signup_pass == "") {
-        echo '<script>alert("비어있는 항목이 있습니다.");</script>';
+        echo '<script>alert("There is an empty item.");</script>';
         echo '<script>history.back();</script>';
     } else {
         mysqli_query($conn, $sql);
@@ -31,7 +31,7 @@ if (mysqli_num_rows($check_duplicate_result) > 0) {
         $insert_email_sql = "INSERT INTO user_email (e_user_id, email) VALUES ('$signup_id', '$signup_email')";
         mysqli_query($conn, $insert_email_sql);
 
-        echo '<script>alert("회원 가입이 완료되었습니다.");</script>';
+        echo '<script>alert("Membership registration has been completed.");</script>';
         echo "<script>location.replace('login.php');</script>";
     }
 }
