@@ -41,11 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $updateResult = $conn->query($updateBalanceQuery);
 
         if ($insertResult === TRUE) {
-            echo "<script>alert('거래 추가에 성공했습니다.');
+            echo "<script>alert('Successfully added a transaction.');
             location.replace('transaction.php');</script>";
 
         } else {
-            echo "<script>alert('거래 추가 실패 : ')</script>" . $conn->error;
+            echo "<script>alert('Failed to add transaction : ')</script>" . $conn->error;
         }
         
     }

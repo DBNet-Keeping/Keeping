@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $duplicateResult = $conn->query($checkDuplicateQuery);
 
         if ($duplicateResult->num_rows > 0) {
-            echo "<script>alert('이미 존재하는 계좌 번호입니다.')</script>";
+            echo "<script>alert('Account number already exists.')</script>";
         } else {
             // Map bank_name to a_bank_id
             $bankIdMap = [
@@ -43,9 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $insertAccountQuery = "INSERT INTO account (account_number, balance, deposit_and_withdrawal_status, a_user_id, a_bank_id) VALUES ('$account_num', $balance, '$deposit_and_withdrawal_status', '$user_id', $a_bank_id)";
 
             if ($conn->query($insertAccountQuery) === TRUE) {
-                echo "<script>alert('계좌 추가에 성공했습니다')</script>";
+                echo "<script>alert('Account sucessfully added.')</script>";
             } else {
-                echo "<script>alert('계좌 추가 실패 : ')</script>" . $conn->error;
+                echo "<script>alert('Account addition failed : ')</script>" . $conn->error;
             }
         }
     }
@@ -58,9 +58,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $deleteAccountQuery = "DELETE FROM account WHERE account_number = '$deleteAccountNum' AND a_user_id = '$user_id'";
 
         if ($conn->query($deleteAccountQuery) === TRUE) {
-            echo "<script>alert('계좌가 성공적으로 삭제되었습니다')</script>";
+            echo "<script>alert('Account successfully deleted')</script>";
         } else {
-            echo "<script>alert('계좌 삭제에 실패 : ')</script>" . $conn->error;
+            echo "<script>alert('Account deletion failed : ')</script>" . $conn->error;
         }
     }
 }

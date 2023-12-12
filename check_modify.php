@@ -17,7 +17,7 @@ $newPasswordConfirm = $_POST['new_password_confirm'];
 
 // 이메일과 비밀번호가 입력되었는지 확인
 if ($newNickname == "" || $oldPassword == "" || $newPassword == "" || $newPasswordConfirm == "") {
-    echo "비어있는 항목이 있습니다.";
+    echo "There is an empty item.";
     exit;
 }
 
@@ -30,13 +30,13 @@ if (mysqli_num_rows($checkOldPasswordResult) > 0) {
     $updateUserInfoSql = "UPDATE user SET nickname = '$newNickname', password = '$newPassword' WHERE user_id = '$loggedInUserId'";
     
     if ($conn->query($updateUserInfoSql) === TRUE) {
-        echo "회원 정보가 성공적으로 수정되었습니다.";
+        echo "Member information has been successfully modified.";
         echo "<script>location.replace('home.php');</script>";
     } else {
-        echo "오류: " . $conn->error;
+        echo "Error: " . $conn->error;
     }
 } else {
-    echo "옛날 비밀번호가 일치하지 않습니다.";
+    echo "Old passwords don't match.";
 }
 
 // DB 연결 종료
