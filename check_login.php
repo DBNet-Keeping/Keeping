@@ -25,7 +25,7 @@
       //결과가 존재하면 세션 생성
       if ($row != null) {
          $_SESSION['username'] = $row['user_id'];
-         $_SESSION['name'] = $row['name'];
+         $_SESSION['nickname'] = $row['nickname'];
          echo "<script>location.replace('home.php');</script>";
          exit;
       }
