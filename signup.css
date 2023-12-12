@@ -26,7 +26,17 @@ h2{
     margin-left: -6px;
 }
 
+.email{
+    width: 260px;
+    height: 30px;
+    margin-left: -6px;
+}
+
 .idForm{
+    margin:10px;
+}
+
+.EmailForm{
     margin:10px;
 }
 

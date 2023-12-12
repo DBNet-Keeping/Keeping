@@ -12,6 +12,9 @@
     <div class="idForm">
       <input type="text" name="id" class="id" placeholder="Username">
     </div>
+    <div class="EmailForm">
+      <input type="text" class="email" name="email" placeholder="Email">
+    </div>
     <div class="nicknameForm">
       <input type="text" name="nickname" class="id" placeholder="Nickname">
     </div> 
