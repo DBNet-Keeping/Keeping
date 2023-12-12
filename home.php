@@ -70,7 +70,7 @@
     $expense_P = "₩ ". $T_TotalEprice;
 
     // 입출금 가능한 통장들 잔고 확인
-    $CurrentBalanceQuery = "SELECT balance FROM account WHERE deposit_and_withdrawal_status = 1 AND a_user_id = '$userid'";
+    $CurrentBalanceQuery = "SELECT * FROM account_balance_view";
     $CurrentBalanceResult = $conn ->query($CurrentBalanceQuery);
     $current_ = 0;
     
