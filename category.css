@@ -1,0 +1,18 @@
+body{
+    background-color: #545454;
+}
+
+.accountForm{
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center; /* 수평 가운데 정렬 */
+    background-color: #333333;
+    width: 1000px;
+    padding-top: 150px;
+    padding-bottom: 150px;
+    margin-top: 30px;
+    border-radius: 15px;
+}
