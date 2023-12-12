@@ -138,14 +138,32 @@ body {
   border-bottom-right-radius: 30px;
   box-shadow: 0px 5px 5px #00000062;
   margin-left: 471px;
-  margin-top: 650px;
+  margin-top: 670px;
   text-shadow: 0px 5px 5px #00000062;
 }
 
 #MonthIncomeChart {
-  width: 600px;
-  height: 400px;
+  width: 1120px;
+  height: 500px;
   padding-left: 20px;
+  background-color: #333333;
+  padding: 20px;
+  border-radius: 15px;
+  margin-left: -25px;
+  box-shadow: 0px 5px 5px #00000062;
+}
+
+#MonthCategoryChart {
+  margin-top: 80px;
+  width: 1120px;
+  height: 500px;
+  padding-left: 20px;
+  background-color: #333333;
+  padding: 20px;
+  border-radius: 15px;
+  margin-left: -25px;
+  box-shadow: 0px 5px 5px #00000062;
+  padding-top: 20px;
 }
 
 #homeG {

@@ -83,6 +83,28 @@
         $current_ = 0;
     }
     $current_P = "₩ " . $current_;
+
+    // 지출 카테고리 상위 3개 가져오기
+    $CategoryTopQuery = "SELECT C.category_name as categoryname, SUM(T.price) as categorysum 
+    FROM transaction T
+    JOIN category C
+    ON T.t_category_id = C.category_id
+    WHERE T.deposit_or_withdrawal = '-' AND t_user_id = '$userid'
+    GROUP BY t_category_id
+    ORDER BY categorysum DESC
+    LIMIT 3;";
+    $CategoryTopResult = $conn ->query($CategoryTopQuery);
+
+    $CategoryData = array();
+    
+    if($CategoryTopResult->num_rows > 0){
+        while($Category_row = $CategoryTopResult->fetch_assoc()){
+            $CategoryData[] = array(
+                'categoryname' => $Category_row['categoryname'],
+                'categorysum' => $Category_row['categorysum']
+            );
+        }
+    }
 ?>
                 
 <!DOCTYPE html>
@@ -173,6 +195,79 @@
                         {
                             x: 
                             {
+                                autoSkip: false,
+                                ticks: 
+                                {
+                                    color: '#FFFFFF',
+                                    font:{
+                                        family: 'Myanmar-Khyay',
+                                        size: 20
+                                    }
+                
+                                }
+                            },
+                            y: 
+                            {
+                                ticks:{
+                                    color: '#FFFFFF',
+                                    font:{
+                                        family: 'Myanmar-Khyay'
+                                    },
+                                    padding: 10
+                                },
+                                beginAtZero: true,
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'top',
+                                labels: {
+                                    color: 'white', // 범례 글자 색상을 흰색으로 변경
+                                    font:{
+                                        family: 'Myanmar-Khyay',
+                                        size: 15
+                                    },
+                                }
+                            }
+                        },
+                        layout: {
+                            padding: {
+                                left: 10,
+                                top: 10,
+                                bottom: 10
+                            }
+                        }
+                    }
+                });
+            </script>
+            <canvas id="MonthCategoryChart"></canvas>
+            <script>
+                var categoryData = <?php echo json_encode($CategoryData); ?>;
+                var CategoryChart = document.getElementById('MonthCategoryChart').getContext('2d');
+
+                var labels = categoryData.map(item => item.categoryname);
+                var data = categoryData.map(item => item.categorysum);
+
+                var myCategoryChart = new Chart(CategoryChart, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Expense Category',
+                            data: data,
+                            backgroundColor: '#5935b6',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                        }]
+                    },
+                    options:{
+                        responsive: false, // 차트 크기를 반응형으로 조절하지 않음
+                        maintainAspectRatio: false, // 가로 및 세로 비율을 유지하지 않음
+                        scales: 
+                        {
+                            x: 
+                            {
+                                autoSkip: false,
                                 ticks: 
                                 {
                                     color: '#FFFFFF',

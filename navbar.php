@@ -1,6 +1,7 @@
 <html lang="en">
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="assets\navbar.js"></script>
+  <link rel=stylesheet href='assets\navbar.css' type='text/css'>
   <div class="container-fluid" id="topbar">
     <nav>
       <ul class="bar-ul" id="top-ul">
