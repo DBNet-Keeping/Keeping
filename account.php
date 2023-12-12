@@ -112,6 +112,7 @@ $result1 = $conn->query($getAccountQuery);
             echo "<p>";
             $bankImage = $row1['bank_img'];
             echo "<img src='$bankImage' alt='Bank Image'><br>";
+            echo "<p>";
             echo $row1['bank_name'] . "   ";
             echo $row1['account_number'] . "<br>";
             echo "Balance : " . $row1['balance'] . " ₩<br>";

@@ -9,6 +9,7 @@ mysqli_select_db($conn, $db_name);
 $signup_id = $_POST['id'];
 $signup_pass = $_POST['pw'];
 $signup_nickname = $_POST['nickname'];
+$signup_email = $_POST['email'];
 
 // 아이디 중복 체크
 $check_duplicate_sql = "SELECT * FROM user WHERE user_id = '$signup_id'";
@@ -26,6 +27,10 @@ if (mysqli_num_rows($check_duplicate_result) > 0) {
         echo '<script>history.back();</script>';
     } else {
         mysqli_query($conn, $sql);
+
+        $insert_email_sql = "INSERT INTO user_email (e_user_id, email) VALUES ('$signup_id', '$signup_email')";
+        mysqli_query($conn, $insert_email_sql);
+
         echo '<script>alert("회원 가입이 완료되었습니다.");</script>';
         echo "<script>location.replace('login.php');</script>";
     }
