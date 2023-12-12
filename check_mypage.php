@@ -1,7 +1,7 @@
 <?php
 session_start();
 $loggedInUserId = $_SESSION['username'];
-$loggedInEmail = $_SESSION['email'];
+$loggedInNickname = $_SESSION['nickname'];
 
 error_reporting(E_ALL);
 ini_set("display_errors", 1);

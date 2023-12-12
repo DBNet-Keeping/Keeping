@@ -23,7 +23,7 @@
 
     // check_mypage.php에서 얻은 사용자 아이디와 이메일을 읽어옴
     $loggedInUserId = $_SESSION['username'];
-    $loggedInEmail = $_SESSION['email'];
+    $loggedInNickname = $_SESSION['nickname'];
 
     // 여기에 추가적으로 필요한 코드를 작성하세요
     ?>
@@ -33,7 +33,7 @@
         <br>
         <img src="user_img.png" alt="회원 사진" class="user_img">
         <h1>HI! <?php echo $loggedInUserId; ?></h1>
-        <h3><?php echo $loggedInEmail; ?></h3>
+        <h3><?php echo $loggedInNickname; ?></h3>
         <br>
         <a href="modify.php" class="modify">Modify Member Information</a>
         <br>

@@ -12,8 +12,8 @@
     <div class="idForm">
       <input type="text" name="id" class="id" placeholder="Username">
     </div>
-    <div class="emailForm">
-      <input type="text" name="email" class="id" placeholder="e-mail">
+    <div class="nicknameForm">
+      <input type="text" name="nickname" class="id" placeholder="Nickname">
     </div> 
     <div class="passForm">
       <input type="password" name="pw" class="pw" placeholder="Password">

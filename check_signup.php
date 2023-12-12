@@ -8,7 +8,7 @@ mysqli_select_db($conn, $db_name);
 
 $signup_id = $_POST['id'];
 $signup_pass = $_POST['pw'];
-$signup_email = $_POST['email'];
+$signup_nickname = $_POST['nickname'];
 
 // 아이디 중복 체크
 $check_duplicate_sql = "SELECT * FROM user WHERE user_id = '$signup_id'";
@@ -19,9 +19,9 @@ if (mysqli_num_rows($check_duplicate_result) > 0) {
     echo '<script>history.back();</script>';
 } else {
     // 아이디 중복이 아니면 회원가입 진행
-    $sql = "INSERT INTO user VALUES ('$signup_id', '$signup_pass', '$signup_email')";
+    $sql = "INSERT INTO user VALUES ('$signup_id', '$signup_pass', '$signup_nickname')";
     
-    if ($signup_id == "" || $signup_email == "" || $signup_pass == "") {
+    if ($signup_id == "" || $signup_nickname == "" || $signup_pass == "") {
         echo '<script>alert("비어있는 항목이 있습니다.");</script>';
         echo '<script>history.back();</script>';
     } else {

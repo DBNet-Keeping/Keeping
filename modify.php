@@ -19,8 +19,8 @@
     <form class="modify" method="post" action="check_modify.php" class="modifyForm">
         <h2>Modify Member Information</h2>
         <h4>Clicking the button below will proceed with the withdrawal from membership.<br> Upon withdrawal, all of your information will be deleted.</h4>
-        <div class="emailForm">
-            <input type="text" name="new_email" class="id" placeholder="New e-mail">
+        <div class="nicknameForm">
+            <input type="text" name="new_nickname" class="id" placeholder="New nickname">
         </div> 
         <div class="oldpassForm">
             <input type="password" name="old_pw" class="pw" placeholder="Old Password">
