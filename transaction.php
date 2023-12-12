@@ -84,28 +84,19 @@
                     echo $row['요일'] . "   <br>";
                     echo "<hr>";
                     echo $row['입출금'] . " ";
-                    echo $row['가격'] . " ₩         ";
-                    echo $row['거래처'] . "   ";
+                    echo $row['가격'] . " ₩                     ";
+                    echo $row['거래처'] . "                      ";
                     echo $row['카테고리명'] . "   ";
                     echo "<br><br>";
             
                     echo "------------------------------------";
                     echo "</p>";
+
                 }
-            } else{
+            }
+            else {
                 echo "NULL.";
             }
-
-            $UpdateBalance = "UPDATE account
-                                JOIN transaction ON account.account_number = transaction.t_account_number
-                                SET account.balance = account.balance + IF(transaction.deposit_or_withdrawal = '+', transaction.price, -transaction.price)";
-            $result_update = $conn->query($UpdateBalance);
-
-            // 업데이트 결과 확인
-            if (!$result_update) {
-                echo "Error updating balance.";
-            }
-
             ?>
 
         </div>

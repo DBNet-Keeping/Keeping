@@ -12,7 +12,7 @@ $user_id = $_SESSION['username'];
         
 // 사용자가 폼을 통해 거래 추가한 경우
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // 폼으로부터 받은 계좌 정보
+    // 폼으로부터 받은 거래 정보
     if (isset($_POST['addTransaction'])) {
         $date_t = $_POST['date_t'];
         $deposit_or_withdrawal = $_POST['deposit_or_withdrawal'];
@@ -25,25 +25,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $t_account_number = $_POST['t_account_number'];
         $t_category_id = $_POST['category_id'];
 
-        // 사용자의 계좌 정보를 추가하는 쿼리
+        // 사용자의 거래 정보를 추가하는 쿼리
         $insertTransactionQuery = "INSERT INTO transaction (date_t, deposit_or_withdrawal, price, client, si, dong, detail_location, memo, t_account_number, t_user_id, t_category_id) 
                                     VALUES ('$date_t', '$deposit_or_withdrawal', $price, '$client', '$si', '$dong', '$detail_location', '$memo', '$t_account_number', '$user_id', $t_category_id)";
+         
+        $insertResult = $conn->query($insertTransactionQuery);
 
-        if ($conn->query($insertTransactionQuery) === TRUE) {
-                    echo "<script>alert('거래 추가에 성공했습니다.');
-                    location.replace('transaction.php');</script>";
+        $lastTransactionId = $conn->insert_id; // 방금 추가된 ID를 얻음
+
+        // 이 ID를 사용하여 특정 트랜잭션에 대해 잔액 업데이트 쿼리를 수행
+        $updateBalanceQuery = "UPDATE account a
+                                JOIN transaction t ON a.account_number = t.t_account_number
+                                AND t.transaction_id = $lastTransactionId
+                                SET a.balance = a.balance + IF(t.deposit_or_withdrawal = '+', t.price, -t.price)";
+        $updateResult = $conn->query($updateBalanceQuery);
+
+        if ($insertResult === TRUE) {
+            echo "<script>alert('거래 추가에 성공했습니다.');
+            location.replace('transaction.php');</script>";
 
         } else {
             echo "<script>alert('거래 추가 실패 : ')</script>" . $conn->error;
         }
+        
     }
 }
-// 사용자 거래 정보 가져오는 쿼리*
-$getTransactionQuery = "SELECT t.transaction_id AS 거래id, t.date_t AS 날짜, t.deposit_or_withdrawal AS 입출금, t.price AS 가격, t.client AS 거래처, c.category_name AS 카테고리명
-                        FROM transaction t, category c
-                        WHERE t.t_user_id = '$user_id'
-                        AND c.category_id = t.t_category_id";
 
-$result = $conn->query($getTransactionQuery);
 
 ?>
